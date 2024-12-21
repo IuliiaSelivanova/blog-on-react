@@ -4,6 +4,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import './home.css';
 
 const Home = () => {
+  
   return (
     <>
       <Header/>
