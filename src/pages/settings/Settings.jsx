@@ -13,7 +13,7 @@ const Settings = () => {
         <form className="settingsForm">
           <label>Profile Picture</label>
           <div className="settingsPP">
-            <img src={settingsProfileImg} alt="settings profile photo" />
+            <img src={settingsProfileImg} alt="settings profile" />
             <label htmlFor="fileInput">
               <i className="settingsPPIcon fa-regular fa-circle-user"></i>
             </label>

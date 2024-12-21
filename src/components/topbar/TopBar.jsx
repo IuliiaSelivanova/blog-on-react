@@ -1,7 +1,9 @@
 import './topbar.css';
 import PropfileImage from '../../assets/images/cat1.png';
+import { Link } from 'react-router';
 
 const TopBar = () => {
+  const isAuthentificated = true;
   return (
     <div className='top'>
       <div className="topLeft">
@@ -12,15 +14,22 @@ const TopBar = () => {
       </div>
       <div className="topCenter">
         <ul className='topList'>
-          <li className="topListItem">Home</li>
-          <li className="topListItem">About</li>
-          <li className="topListItem">Contact</li>
-          <li className="topListItem">Write</li>
-          <li className="topListItem">Logout</li>
+          <li className="topListItem link"><Link className='link' to="/">Home</Link></li>
+          <li className="topListItem"><Link className='link' to="/#about">About</Link></li>
+          <li className="topListItem"><Link className='link' to="/#contacts">Contacts</Link></li>
+          <li className="topListItem"><Link className='link' to="/write">Write</Link></li>
+          <li className="topListItem">{isAuthentificated && "Logout"}</li>
         </ul>
       </div>
       <div className="topRight">
-        <img className='topImage' src={PropfileImage} alt="profile-photo" />
+        {
+          isAuthentificated ?
+          (<img className='topImage' src={PropfileImage} alt="profile-photo" />) 
+          : (<ul className='topList'>
+              <li className='topListItem'><Link className='link' to="/login">Login</Link></li>
+              <li className='topListItem'><Link className='link' to="/register">Register</Link></li>              
+            </ul>)
+        }
         <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
