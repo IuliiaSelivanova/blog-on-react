@@ -2,7 +2,7 @@ import './post.css';
 import postImg from '../../assets/images/postImage.jpg'
 import { Link } from 'react-router';
 
-const Post = () => {
+const Post = ({post}) => {
   return (
     <div className='post'>
       <img className='postImg' src={postImg} alt="postImage" />
@@ -11,12 +11,13 @@ const Post = () => {
           <span className="postCat">Music</span>
           <span className="postCat">Life</span>
         </div>
-        <span className="postTitle"><Link className='link' to="/post/:postId">Lorem ipsum, dolor sit amet</Link></span>
+        <Link className='link' to={`/post/${post.id}`}>
+          <span className="postTitle">{post.title}</span>
+        </Link>
         <hr />
         <span className='postDate'>1 hour ago</span>
       </div>
-      <p className='postDesc'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut culpa architecto qui pariatur consequatur, minima magni ipsa officia porro incidunt eos. Distinctio reiciendis obcaecati ipsa earum numquam pariatur praesentium soluta?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut culpa architecto qui pariatur consequatur, minima magni ipsa officia porro incidunt eos. Distinctio reiciendis obcaecati ipsa earum numquam pariatur praesentium soluta?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut culpa architecto qui pariatur consequatur, minima magni ipsa officia porro incidunt eos. Distinctio reiciendis obcaecati ipsa earum numquam pariatur praesentium soluta?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut culpa architecto qui pariatur consequatur, minima magni ipsa officia porro incidunt eos. Distinctio reiciendis obcaecati ipsa earum numquam pariatur praesentium soluta?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut culpa architecto qui pariatur consequatur, minima magni ipsa officia porro incidunt eos. Distinctio reiciendis obcaecati ipsa earum numquam pariatur praesentium soluta?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut culpa architecto qui pariatur consequatur, minima magni ipsa officia porro incidunt eos. Distinctio reiciendis obcaecati ipsa earum numquam pariatur praesentium soluta?
-      </p>
+      <p className='postDesc'>{post.body}</p>
     </div>
   );
 };
