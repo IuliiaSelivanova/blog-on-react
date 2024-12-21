@@ -10,7 +10,7 @@ import './app.css';
 // import SinglePost from "./components/singlePost/SinglePost";
 
 function App() {
-  const isAuthentificated = true;
+  const isAuthentificated = false;
   return (
     <BrowserRouter>
       <TopBar/>

@@ -19,9 +19,14 @@ const TopBar = () => {
           <li className="topListItem"><Link className='link' to="/#contacts">Contacts</Link></li>
           <li className="topListItem"><Link className='link' to="/write">Write</Link></li>
           <li className="topListItem">{isAuthentificated && "Logout"}</li>
+          {/* <li className="topListItem">"Logout"</li> */}
         </ul>
       </div>
       <div className="topRight">
+        {/* <ul className='topList'>
+          <li className='topListItem'><Link className='link' to="/login">Login</Link></li>
+          <li className='topListItem'><Link className='link' to="/register">Register</Link></li>              
+        </ul> */}
         {
           isAuthentificated ?
           (<img className='topImage' src={PropfileImage} alt="profile-photo" />) 

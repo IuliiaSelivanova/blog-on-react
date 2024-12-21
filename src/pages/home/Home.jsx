@@ -5,7 +5,6 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import './home.css';
 import axios from 'axios';
 import { urlPosts } from '../../urls';
-import { useLocation } from 'react-router';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
