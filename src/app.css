@@ -1,0 +1,19 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+.link:hover,
+:focus {
+  color: rgba(0, 0, 0, 0.5);
+}
