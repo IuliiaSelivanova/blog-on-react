@@ -2,8 +2,8 @@
 
 С использованием библиотеки React создано SPA приложение-блог с возможностью авторизации и аутентификации. \
 Поскольку серверная часть приложения отсутствует,  для тестирования использовались сервисы REST API с фиктивными данными [Dummyjson](https://dummyjson.com/)\
-Тестовые данные для авторизации (REGISTER_SUCCESS): { email: 'eve.holt@reqres.in', password: 'pistol' } -> возвращаемые данные: { "id": 4, "token": "QpwL5tke4Pnpja7X4"}.\
-Тестовые данные для аутентификации (LOGIN_SUCCESS): { email: 'eve.holt@reqres.in', password: 'cityslicka' }-> возвращаемые данные: { "token": "QpwL5tke4Pnpja7X4"}.
+Тестовые данные для аутентификации (LOGIN_SUCCESS) находятся по ссылке [Dummyjson](https://dummyjson.com/users) - username, password.\
+
 
 # Getting Started with Create React App
 
