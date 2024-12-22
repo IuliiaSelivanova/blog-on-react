@@ -2,6 +2,7 @@ import './topbar.css';
 import { Link } from 'react-router';
 import { UserContext } from '../../context/Context';
 import { useContext } from 'react';
+import { HashLink } from 'react-router-hash-link';
 
 const TopBar = () => {
   const {user, dispatch} = useContext(UserContext);
@@ -22,7 +23,7 @@ const TopBar = () => {
         <ul className='topList'>
           <li className="topListItem link"><Link className='link' to="/">Home</Link></li>
           <li className="topListItem"><Link className='link' to="/myposts">My Posts</Link></li>
-          <li className="topListItem"><Link className='link' to="/#contacts">Contacts</Link></li>
+          <li className="topListItem"><HashLink smooth className='link' to="/#contacts">Contacts</HashLink></li>
           <li className="topListItem"><Link className='link' to="/write">Write</Link></li>
           <li className="topListItem" onClick={handleLogout}>{user && "Logout"}</li>
         </ul>

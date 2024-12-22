@@ -5,13 +5,13 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className="sidebarItem">
-        <span id='about' className="sidebarTitle">About me</span>
+        <span className="sidebarTitle">About me</span>
         <img src={sidebarProfile} alt="sidebar profile" />
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos sed at magni officia harum accusamus repudiandae porro a nesciunt quod.</p>
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">Categories</span>
-        <ul className="sidebarList">
+        <ul id='contacts' className="sidebarList">
           <li className="sidebarListItem">Life</li>
           <li className="sidebarListItem">Music</li>
           <li className="sidebarListItem">Style</li>
@@ -22,7 +22,7 @@ const Sidebar = () => {
       </div>
       <div className="sidebarItem">
         <span>Follow us</span>
-        <div id='contacts' className="sidebarSocial">
+        <div className="sidebarSocial">
           <i className="sidebarIcon fa-brands fa-square-facebook"></i>
           <i className="sidebarIcon fa-brands fa-square-twitter"></i>
           <i className="sidebarIcon fa-brands fa-square-pinterest"></i>

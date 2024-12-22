@@ -14,7 +14,7 @@ import MyPosts from "./pages/myposts/MyPosts";
 function App() {
   const {user} = useContext(UserContext);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/blog-on-react">
       <TopBar/>
         <Routes>
           <Route path="/" element={<Home />} />
