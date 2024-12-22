@@ -17,7 +17,7 @@
   <li>Удаление профиля пользователя</li>
 </ol>
 
-###ScreenShot
+### ScreenShots
 ![HomePage](https://github.com/user-attachments/assets/8cf051c6-8a9a-4c8b-a672-66c6ad81c560)
 ![CreatePost](https://github.com/user-attachments/assets/72c2686c-c4c9-4037-9ab1-721e15ee9ee9)
 
