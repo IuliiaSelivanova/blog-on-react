@@ -1,10 +1,11 @@
 //тестовые url с данными постов и пользователей
-export const urlPosts = 'https://jsonplaceholder.typicode.com/posts/';
-export const urlUsers = 'https://jsonplaceholder.typicode.com/users/';
+export const urlPosts = 'https://dummyjson.com/posts';
 
-//тестовые данные для аутентификации (login)
-export const urlLogin = 'https://reqres.in/api/login';
+//публикация поста
+export const urlAddPost = 'https://dummyjson.com/posts/add';
 
 //тестовые данные для авторизации (register)
-export const urlRegister = 'https://reqres.in/api/users';
+export const urlRegister = 'https://dummyjson.com/users/add';
 
+//тестовые данные для аутентификации (login)
+export const urlLogin = 'https://dummyjson.com/auth/login';

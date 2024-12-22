@@ -3,22 +3,28 @@ const Reducer = (state, action) =>{
     case "LOGIN_START":
       return{
         user: null,
-        isfetching: true,
+        isFetching: true,
         error: false,
       }
-    case "LOGIN_SUCCES":
+    case "LOGIN_SUCCESS":
       return{
         user: action.payload,
-        isfetching: false,
+        isFetching: false,
         error: false,
       }
     case "LOGIN_FAILURE":
       return{
         user: null,
-        isfetching: false,
-        error: true,
+        isFetching: false,
+        error: action.payload || "Login failed",
       }
-    default: throw new Error('что-то пошло не так');
+    case "LOGOUT":
+      return{
+        user: null,
+        isFetching: false,
+        error: false,
+      }
+    default: return state;
   }
 }
 
