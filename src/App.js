@@ -7,7 +7,6 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route, } from "react-router";
 import './app.css';
-// import SinglePost from "./components/singlePost/SinglePost";
 
 function App() {
   const isAuthentificated = false;
@@ -21,6 +20,7 @@ function App() {
           <Route path="/write" element={isAuthentificated ? <Write/> : <Login/>} />
           <Route path="/settings" element={isAuthentificated ? <Settings/> : <Login/>} />
           <Route path="/post/:postId" element={<Single />} />
+          {/* <Route path="*" element={<ErrorPage errorCode={404} />} /> */}
         </Routes>
       </BrowserRouter>
   );

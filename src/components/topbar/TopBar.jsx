@@ -3,7 +3,7 @@ import PropfileImage from '../../assets/images/cat1.png';
 import { Link } from 'react-router';
 
 const TopBar = () => {
-  const isAuthentificated = true;
+  const isAuthentificated = false;
   return (
     <div className='top'>
       <div className="topLeft">

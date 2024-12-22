@@ -13,6 +13,7 @@ const Home = () => {
     const fetchPosts = async ()=>{
       const res = await axios.get(urlPosts + `?userId=6`) //заменить на ${props.id})
       setPosts(res.data)
+      console.log(res.data)
     }
     fetchPosts()
   },[])
