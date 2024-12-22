@@ -1,6 +1,6 @@
 # Blog React App (pet-project)
 
-С использованием библиотеки React создано SPA приложение-блог с возможностью авторизации и аутентификации. 
+С использованием библиотеки React создано SPA десктопное приложение-блог с возможностью авторизации и аутентификации. 
 Поскольку серверная часть приложения отсутствует,  для тестирования использовались сервисы REST API с фиктивными данными [Dummyjson](https://dummyjson.com/)
 В связи с этим, некоторые функции приложения ограничены - просмотр нового поста в списке, созданного пользователем; смена аватарки пользователя.
 Тестовые данные для аутентификации (LOGIN_SUCCESS) находятся по ссылке [Dummyjson](https://dummyjson.com/users) - username, password.
@@ -16,6 +16,10 @@
   <li>Редактирование личных данных (логин, mail, пароль) пользователя</li>
   <li>Удаление профиля пользователя</li>
 </ol>
+
+###ScreenShot
+![HomePage](https://github.com/user-attachments/assets/8cf051c6-8a9a-4c8b-a672-66c6ad81c560)
+![CreatePost](https://github.com/user-attachments/assets/72c2686c-c4c9-4037-9ab1-721e15ee9ee9)
 
 
 # Getting Started with Create React App
