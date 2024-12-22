@@ -30,6 +30,12 @@
   color: rgb(121, 118, 118);
   cursor: pointer;
 }
+/* .writeIconUpload {
+  width: 10px;
+  aspect-ratio: 1;
+  font-size: 10px;
+  position: absolute;
+} */
 
 .writeInput {
   font-size: 30px;

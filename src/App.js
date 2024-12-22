@@ -7,20 +7,22 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route, } from "react-router";
 import './app.css';
-// import SinglePost from "./components/singlePost/SinglePost";
+import { useContext } from "react";
+import { UserContext } from "./context/Context";
 
 function App() {
-  const isAuthentificated = true;
+  const {user} = useContext(UserContext);
   return (
     <BrowserRouter>
       <TopBar/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={isAuthentificated ? <Home/> : <Register/>}/>
-          <Route path="/login" element={isAuthentificated ? <Home/> : <Login/>} />
-          <Route path="/write" element={isAuthentificated ? <Write/> : <Login/>} />
-          <Route path="/settings" element={isAuthentificated ? <Settings/> : <Login/>} />
+          <Route path="/register" element={user ? <Home/> : <Register/>}/>
+          <Route path="/login" element={user ? <Home/> : <Login/>} />
+          <Route path="/write" element={user ? <Write/> : <Login/>} />
+          <Route path="/settings" element={user ? <Settings/> : <Login/>} />
           <Route path="/post/:postId" element={<Single />} />
+          {/* <Route path="*" element={<ErrorPage errorCode={404} />} /> */}
         </Routes>
       </BrowserRouter>
   );
