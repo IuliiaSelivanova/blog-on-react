@@ -2,7 +2,7 @@
   "name": "blog-on-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://IuliiaSelivanova.github.io/blog-on-react",
+  "homepage": "https://iuliiaselivanova.github.io/blog-on-react/",
   "dependencies": {
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
