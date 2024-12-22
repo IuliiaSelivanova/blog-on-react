@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import './register.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { urlRegister } from '../../urls';
 
@@ -52,7 +52,7 @@ const Register = () => {
         <button className='registerLoginButton'>
           <Link className='link' to="/login">Login</Link>
         </button>
-        
+
         <span style={{marginTop:"15px", color: 'rebeccapurple'}}>{error}</span>
       </div>
     </div>
