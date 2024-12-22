@@ -21,7 +21,7 @@ const TopBar = () => {
       <div className="topCenter">
         <ul className='topList'>
           <li className="topListItem link"><Link className='link' to="/">Home</Link></li>
-          <li className="topListItem"><Link className='link' to="/#about">About</Link></li>
+          <li className="topListItem"><Link className='link' to="/myposts">My Posts</Link></li>
           <li className="topListItem"><Link className='link' to="/#contacts">Contacts</Link></li>
           <li className="topListItem"><Link className='link' to="/write">Write</Link></li>
           <li className="topListItem" onClick={handleLogout}>{user && "Logout"}</li>

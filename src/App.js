@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, } from "react-router";
 import './app.css';
 import { useContext } from "react";
 import { UserContext } from "./context/Context";
+import MyPosts from "./pages/myposts/MyPosts";
 
 function App() {
   const {user} = useContext(UserContext);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={user ? <Home/> : <Register/>}/>
           <Route path="/login" element={user ? <Home/> : <Login/>} />
           <Route path="/write" element={user ? <Write/> : <Login/>} />
+          <Route path="/myposts" element={user ? <MyPosts/> : <Login/>} />
           <Route path="/settings" element={user ? <Settings/> : <Login/>} />
           <Route path="/post/:postId" element={<Single />} />
         </Routes>
