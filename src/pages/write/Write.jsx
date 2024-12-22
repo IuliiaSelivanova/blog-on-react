@@ -30,11 +30,9 @@ const Write = () => {
     // }
 
     try{
-      console.log(newPost)
-      const res = await axios.post(urlAddPost, newPost);
-      console.log('success', res.data)
+      await axios.post(urlAddPost, newPost);
       //добавить модал - пост опубликован
-      //после публикации поста -> переход на главную страницу (поскольку БД тестовая новые посты не сохраняются)
+      //после публикации поста -> переход на главную страницу (поскольку БД тестовая, новые посты не сохраняются)
       window.location.replace("/");
     } catch(err){
       console.log(err);

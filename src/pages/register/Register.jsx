@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import './register.css';
 import { useState } from 'react';
 import axios from 'axios';
-import { urlRegister } from '../../urls';
+import { urlUsers } from '../../urls';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const res = await axios.post(urlRegister, { username, email, password });
+      const res = await axios.post(`${urlUsers}/add`, { username, email, password });
       res.data && window.location.replace('/login');
     } catch(err){
       console.error('Authentification failed:', err.response.data.error);

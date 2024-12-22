@@ -22,7 +22,6 @@ function App() {
           <Route path="/write" element={user ? <Write/> : <Login/>} />
           <Route path="/settings" element={user ? <Settings/> : <Login/>} />
           <Route path="/post/:postId" element={<Single />} />
-          {/* <Route path="*" element={<ErrorPage errorCode={404} />} /> */}
         </Routes>
       </BrowserRouter>
   );
