@@ -20,3 +20,14 @@ html {
 :focus {
   color: rgba(0, 0, 0, 0.5);
 }
+
+@media screen and (max-width: 900px) {
+  /* главная страница */
+  .home {
+    flex-direction: column-reverse;
+  }
+
+  .posts {
+    justify-content: center;
+  }
+}
