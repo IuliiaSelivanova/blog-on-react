@@ -1,4 +1,9 @@
-.home{
+.home {
   display: flex;
-  
+}
+
+@media screen and (max-width: 900px) {
+  .home {
+    flex-direction: column-reverse;
+  }
 }

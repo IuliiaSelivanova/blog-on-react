@@ -22,11 +22,9 @@ html {
 }
 
 @media screen and (max-width: 900px) {
-  /* главная страница */
-  .home {
-    flex-direction: column-reverse;
+  .app {
+    overflow-x: hidden;
   }
-
   .posts {
     justify-content: center;
   }

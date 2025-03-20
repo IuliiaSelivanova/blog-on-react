@@ -1,5 +1,4 @@
 import "./header.css";
-import BackgroundImg from "../../assets/images/background.gif";
 
 const Header = () => {
   return (
@@ -8,11 +7,6 @@ const Header = () => {
         <span className="header__title--small">React</span>
         <span className="header__title--large">Blog</span>
       </div>
-      <img
-        className="header__img"
-        src={BackgroundImg}
-        alt="background"
-      />
     </div>
   );
 };

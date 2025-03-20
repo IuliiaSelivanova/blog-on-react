@@ -14,33 +14,38 @@ import MyPosts from "./pages/myposts/MyPosts";
 function App() {
   const { user } = useContext(UserContext);
   return (
-    <BrowserRouter basename="/blog-on-react">
-      <TopBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/register"
-          element={user ? <Home /> : <Register />}
-        />
-        <Route
-          path="/login"
-          element={user ? <Home /> : <Login />}
-        />
-        <Route
-          path="/write"
-          element={user ? <Write /> : <Login />}
-        />
-        <Route
-          path="/myposts"
-          element={user ? <MyPosts /> : <Login />}
-        />
-        <Route
-          path="/settings"
-          element={user ? <Settings /> : <Login />}
-        />
-        <Route path="/post/:postId" element={<Single />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="app">
+      <BrowserRouter basename="/blog-on-react">
+        <TopBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/register"
+            element={user ? <Home /> : <Register />}
+          />
+          <Route
+            path="/login"
+            element={user ? <Home /> : <Login />}
+          />
+          <Route
+            path="/write"
+            element={user ? <Write /> : <Login />}
+          />
+          <Route
+            path="/myposts"
+            element={user ? <MyPosts /> : <Login />}
+          />
+          <Route
+            path="/settings"
+            element={user ? <Settings /> : <Login />}
+          />
+          <Route
+            path="/post/:postId"
+            element={<Single />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
