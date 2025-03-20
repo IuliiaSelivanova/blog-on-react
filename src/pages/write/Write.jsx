@@ -43,15 +43,15 @@ const Write = () => {
     <div className="write">
       {file && (
         <img
-          className="writeImg"
+          className="write__img"
           src={URL.createObjectURL(file)}
           alt=""
         />
       )}
-      <form className="writeForm" onSubmit={handleSubmit}>
-        <div className="writeFormGroup">
+      <form className="write__form" onSubmit={handleSubmit}>
+        <div className="write__form-group">
           <label htmlFor="fileInput">
-            <i className="writeIcon fa-solid fa-plus"></i>
+            <i className="write__icon fa-solid fa-plus"></i>
           </label>
           <input
             type="file"
@@ -62,20 +62,21 @@ const Write = () => {
           <input
             type="text"
             placeholder="Title"
-            className="writeInput"
+            className="write__input"
             autoFocus={true}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="writeFormGroup">
+        <div className="write__form-group">
           <textarea
             placeholder="Tell your story..."
             type="text"
-            className="writeInput writeText"
+            rows={15}
+            className="write__input write__text"
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
         </div>
-        <button className="writeSubmit" type="submit">
+        <button className="write__submit" type="submit">
           Publish
         </button>
       </form>

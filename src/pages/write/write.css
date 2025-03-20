@@ -1,7 +1,10 @@
 .write {
-  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
-.writeImg {
+
+.write__img {
   margin-left: 150px;
   width: 70vw;
   height: 250px;
@@ -9,16 +12,20 @@
   object-fit: cover;
 }
 
-.writeForm {
-  position: relative;
+.write__form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-.writeFormGroup {
-  margin-left: 150px;
+.write__form-group {
   display: flex;
   align-items: center;
 }
-.writeIcon {
+
+.write__icon {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -30,33 +37,27 @@
   color: rgb(121, 118, 118);
   cursor: pointer;
 }
-/* .writeIconUpload {
-  width: 10px;
-  aspect-ratio: 1;
-  font-size: 10px;
-  position: absolute;
-} */
 
-.writeInput {
+.write__input {
   font-size: 30px;
   border: none;
   padding: 20px;
   width: 70vw;
 }
 
-.writeInput:focus {
+.write__input:focus {
   outline: none;
 }
 
-.writeText {
+.write__text {
+  border-radius: 10px;
+  border: 1px solid teal;
   font-size: 20px;
-  height: 100vh;
+  overflow-y: visible;
 }
 
-.writeSubmit {
-  position: absolute;
-  top: 20px;
-  right: 50px;
+.write__submit {
+  width: 150px;
   color: white;
   background-color: teal;
   padding: 10px;

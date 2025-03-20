@@ -136,7 +136,9 @@ const Settings = () => {
           )}
         </form>
       </div>
-      <Sidebar />
+      <div className="sidebar-container">
+        <Sidebar />
+      </div>
     </div>
   );
 };
