@@ -15,7 +15,7 @@ function App() {
   const { user } = useContext(UserContext);
   return (
     <div className="app">
-      <BrowserRouter basename="/blog-on-react">
+      <BrowserRouter basename="/">
         <TopBar />
         <Routes>
           <Route path="/" element={<Home />} />
