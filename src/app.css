@@ -8,7 +8,15 @@
 html {
   scroll-behavior: smooth;
 }
+html,
+body {
+  height: 100%;
+}
 
+#root,
+.app {
+  height: 100%;
+}
 .link {
   text-decoration: none;
   color: inherit;
@@ -19,4 +27,13 @@ html {
 .link:hover,
 :focus {
   color: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 900px) {
+  .app {
+    overflow-x: hidden;
+  }
+  .posts {
+    justify-content: center;
+  }
 }

@@ -79,3 +79,13 @@
   margin-top: 20px;
   cursor: pointer;
 }
+
+.sidebar-container {
+  flex: 3;
+}
+
+@media screen and(max-width: 900px) {
+  .settings {
+    flex-direction: column-reverse;
+  }
+}
