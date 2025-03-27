@@ -3,7 +3,6 @@ import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
 import Sidebar from "../../components/sidebar/Sidebar";
 import axios from "axios";
-import { urlPosts } from "../../urls";
 import { UserContext } from "../../context/Context";
 import { Link } from "react-router";
 
@@ -14,12 +13,12 @@ const MyPosts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(
-        `${urlPosts}/user/${user.id}`,
+        `/api/posts?user=${user.username}`,
       );
-      setPosts(res.data.posts);
+      setPosts(res.data);
     };
     fetchPosts();
-  }, [user.id]);
+  }, [user.username]);
   return (
     <>
       <Header />
@@ -28,10 +27,8 @@ const MyPosts = () => {
           <Posts posts={posts} />
         ) : (
           <>
-            <span>
-              You haven't created a single post yet.
-            </span>
-            <Link to="/write">Create new post</Link>
+            <span>Вы еще не создали ни одного поста.</span>
+            <Link to="/write">Создать новый пост</Link>
           </>
         )}
         <Sidebar />

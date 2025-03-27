@@ -1,32 +1,37 @@
-import './post.css';
-import postImg from '../../assets/images/postImage.jpg'
-import { Link } from 'react-router';
+import "./post.css";
+import { Link } from "react-router";
 
-const Post = ({post}) => {
+const Post = ({ post }) => {
   return (
-    <div className='post'>
-      <img className='postImg' src={postImg} alt="postImage" />
+    <div className="post">
+      {post.image && (
+        <img
+          className="postImg"
+          src={`/images/${post.image}`}
+          alt="post image"
+        />
+      )}
+
       <div className="postInfo">
         <div className="postCategories">
-          {post.tags.map((tag,index) => (
-            <span className="postCat" key={index}>{tag}</span>
+          {post.categories.map((category) => (
+            <span className="postCat" key={category._id}>
+              {category.name}
+            </span>
           ))}
         </div>
-        <Link className='link' to={`/post/${post.id}`}>
+        <Link className="link" to={`/post/${post._id}`}>
           <span className="postTitle">{post.title}</span>
         </Link>
         <hr />
-        <span className='postDate'>1 hour ago</span>
+
+        <span className="postDate">
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
-      <p className='postDesc'>{post.body}</p>
+      <p className="postDesc">{post.description}</p>
     </div>
   );
 };
-
-//typescript
-// type Props = {
-//   title: string
-//   desc: string
-// }
 
 export default Post;

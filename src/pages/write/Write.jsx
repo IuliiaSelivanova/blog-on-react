@@ -1,7 +1,5 @@
 import "./write.css";
-// import writeImg from '../../assets/images/postImage.jpg';
 import { useContext, useState } from "react";
-import { urlAddPost } from "../../urls";
 import axios from "axios";
 import { UserContext } from "../../context/Context";
 
@@ -15,27 +13,31 @@ const Write = () => {
     e.preventDefault();
     const newPost = {
       title,
-      userId: user.id,
-      body: desc,
+      userId: user._id,
+      description: desc,
       username: user.username,
     };
 
-    //формирование имя файла, отправка на сервер (на тестовом сревере картинка не принимается в posts)
-    // if(file) {
-    //   const data = new FormData();
-    //   const filename = Date.now() + file.name;
-    //   data.append("name", filename);
-    //   data.append("file", file);
-    //   newPost.photo = filename;
-    // }
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newPost.image = filename;
+
+      try {
+        await axios.post("/api/upload", data);
+      } catch (error) {
+        console.error("Error in uploading:", error);
+      }
+    }
 
     try {
-      await axios.post(urlAddPost, newPost);
-      //добавить модал - пост опубликован
-      //после публикации поста -> переход на главную страницу (поскольку БД тестовая, новые посты не сохраняются)
-      window.location.replace("/");
+      const res = await axios.post("/api/posts", newPost);
+      //todo добавить модал - пост опубликован
+      window.location.replace("/post/" + res.data._id);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -45,7 +47,7 @@ const Write = () => {
         <img
           className="write__img"
           src={URL.createObjectURL(file)}
-          alt=""
+          alt="image for post"
         />
       )}
       <form className="write__form" onSubmit={handleSubmit}>
@@ -61,7 +63,7 @@ const Write = () => {
           />
           <input
             type="text"
-            placeholder="Title"
+            placeholder="Название"
             className="write__input"
             autoFocus={true}
             onChange={(e) => setTitle(e.target.value)}
@@ -69,7 +71,7 @@ const Write = () => {
         </div>
         <div className="write__form-group">
           <textarea
-            placeholder="Tell your story..."
+            placeholder="Расскажите свою историю..."
             type="text"
             rows={15}
             className="write__input write__text"
@@ -77,7 +79,7 @@ const Write = () => {
           ></textarea>
         </div>
         <button className="write__submit" type="submit">
-          Publish
+          Опубликовать
         </button>
       </form>
     </div>

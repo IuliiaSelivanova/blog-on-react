@@ -1,8 +1,6 @@
 import "./singlePost.css";
-import SinglePostImage from "../../assets/images/postImage.jpg";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useContext, useEffect, useState } from "react";
-import { urlPosts } from "../../urls";
 import axios from "axios";
 import { UserContext } from "../../context/Context";
 
@@ -17,43 +15,50 @@ const SinglePost = () => {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get(urlPosts + `/${path}`);
+      const res = await axios.get("/api/posts/" + path);
       setPost(res.data);
       setTitle(res.data.title);
-      setDesc(res.data.body);
+      setDesc(res.data.description);
     };
     getPost();
   }, [path]);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(urlPosts + `/${path}`);
+      await axios.delete(`/api/posts/${path}`, {
+        data: {
+          username: user.username,
+        },
+      });
       window.location.replace("/");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${urlPosts}/${path}`, {
+      await axios.put(`/api/posts/${path}`, {
         title,
-        body: desc,
+        description: desc,
+        username: user.username,
       });
       setUpdateMode(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img
-          src={SinglePostImage}
-          alt="single post"
-          className="singlePostImg"
-        />
+        {post.image && (
+          <img
+            src={`/images/${post.image}`}
+            alt="single post"
+            className="singlePostImg"
+          />
+        )}
         {updateMode ? (
           <input
             type="text"
@@ -65,7 +70,7 @@ const SinglePost = () => {
         ) : (
           <h1 className="singlePostTitle">
             {title}
-            {post.userId === user?.id && (
+            {post.username === user?.username && (
               <div className="singlePostEdit">
                 <i
                   className="singlePostIcon fa-regular fa-pen-to-square"
@@ -81,9 +86,17 @@ const SinglePost = () => {
         )}
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Views: <b>{post.views}</b>
+            Автор:
+            <Link
+              to={`/?user=${post.username}`}
+              className="link"
+            >
+              <b>{post.username}</b>
+            </Link>
           </span>
-          <span className="singlePostDate">1 hour ago</span>
+          <span className="singlePostDate">
+            {new Date(post.createdAt).toDateString()}
+          </span>
         </div>
         {updateMode ? (
           <textarea
@@ -99,7 +112,7 @@ const SinglePost = () => {
             className="singlePostButton"
             onClick={handleUpdate}
           >
-            Update
+            Изменить
           </button>
         )}
       </div>

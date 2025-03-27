@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/Context";
 import axios from "axios";
-import { urlUsers } from "../../urls";
+// import defaultAvatar from "../../assets/images/cat1.png";
 
 const Settings = () => {
   const { user, dispatch } = useContext(UserContext);
@@ -17,6 +17,7 @@ const Settings = () => {
     dispatch({ type: "UPDATE_START" });
     e.preventDefault();
     const updatedUser = {
+      userId: user._id,
       username,
       email,
       password,
@@ -29,20 +30,20 @@ const Settings = () => {
       data.append("name", filename);
       data.append("file", file);
       console.log(file);
-      updatedUser.image = filename;
-      //необходима выгрузка новой аватарки на сервер, для дальнейшей загрузки обновленного фото на сайте
-      // try {
-      //   await axios.post('/', data);
-      // } catch (error) {}
+      updatedUser.profilePicture = filename;
+      try {
+        await axios.post("/api/upload", data);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     try {
       const res = await axios.put(
-        `${urlUsers}/${user.id}`,
+        `/api/users/${user._id}`,
         updatedUser,
       );
       setSuccess(true);
-      console.log(res.data);
       dispatch({
         type: "UPDATE_SUCCESS",
         payload: res.data,
@@ -57,11 +58,11 @@ const Settings = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${urlUsers}/${user.id}`);
+      await axios.delete(`/api/users/${user._id}`);
       dispatch({ type: "LOGOUT" });
       window.location.replace("/");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -70,29 +71,36 @@ const Settings = () => {
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="settingsUpdateTitle">
-            Update Your Account
+            Изменить аккаунт
           </span>
           <span
             className="settingsDeleteTitle"
             onClick={handleDelete}
           >
-            Delete Account
+            Удалить аккаунт
           </span>
         </div>
         <form
           className="settingsForm"
           onSubmit={handleSubmit}
         >
-          <label>Profile Picture</label>
+          <label>Фото</label>
           <div className="settingsPP">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : user.image
-              }
-              alt="settings profile"
-            />
+            {user.profilePicture ? (
+              <img
+                src={
+                  file
+                    ? URL.createObjectURL(file)
+                    : `/images/${user.profilePicture}`
+                }
+                alt="settings profile"
+              />
+            ) : (
+              <img
+                src="/images/defaultAvatar.jpg"
+                alt="settings profile"
+              />
+            )}
             <label htmlFor="fileInput">
               <i className="settingsPPIcon fa-regular fa-circle-user"></i>
             </label>
@@ -103,7 +111,7 @@ const Settings = () => {
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
-          <label>Username</label>
+          <label>Логин</label>
           <input
             type="text"
             placeholder={user.username}
@@ -115,13 +123,13 @@ const Settings = () => {
             placeholder={user.email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password</label>
+          <label>Пароль</label>
           <input
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="settingsSubmit" type="submit">
-            Update
+            Обновить
           </button>
           {success && (
             <span
@@ -131,7 +139,7 @@ const Settings = () => {
                 marginTop: "20px",
               }}
             >
-              Profile has been updated
+              Данные обновлены
             </span>
           )}
         </form>

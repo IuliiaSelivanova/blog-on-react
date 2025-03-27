@@ -45,56 +45,59 @@ const TopBar = () => {
             </button>
             <li className="top__list__item link">
               <Link className="link" to="/">
-                Home
+                Главная
               </Link>
             </li>
             <li className="top__list__item">
               <Link className="link" to="/myposts">
-                My Posts
+                Мои посты
               </Link>
             </li>
             <li className="top__list__item">
-              <HashLink
-                smooth
-                className="link"
-                // to="/#contacts"
-                to="/"
-              >
-                Contacts
+              <HashLink smooth className="link" to="/">
+                Контакты
               </HashLink>
             </li>
             <li className="top__list__item">
               <Link className="link" to="/write">
-                Write
+                Написать
               </Link>
             </li>
             <li
               className="top__list__item"
               onClick={handleLogout}
             >
-              {user && "Logout"}
+              {user && "Выйти"}
             </li>
           </ul>
         </div>
         <div className="top__right">
           {user ? (
             <Link to="/settings">
-              <img
-                className="topImage"
-                src={user.image}
-                alt="profile-photo"
-              />
+              {user.profilePicture ? (
+                <img
+                  className="topImage"
+                  src={`/images/${user.profilePicture}`}
+                  alt="profile-photo"
+                />
+              ) : (
+                <img
+                  className="topImage"
+                  src="/images/defaultAvatar.jpg"
+                  alt="profile-photo"
+                />
+              )}
             </Link>
           ) : (
             <ul className="top__list">
               <li className="top__list__item">
                 <Link className="link" to="/login">
-                  Login
+                  Войти
                 </Link>
               </li>
               <li className="top__list__item">
                 <Link className="link" to="/register">
-                  Register
+                  Зарегистрироваться
                 </Link>
               </li>
             </ul>

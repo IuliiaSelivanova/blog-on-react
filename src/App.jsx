@@ -13,6 +13,7 @@ import MyPosts from "./pages/myposts/MyPosts";
 
 function App() {
   const { user } = useContext(UserContext);
+
   return (
     <div className="app">
       <BrowserRouter basename="/">

@@ -1,8 +1,6 @@
-import { Link } from "react-router";
 import "./login.css";
 import { useContext, useRef } from "react";
 import axios from "axios";
-import { urlLogin } from "../../urls";
 import { UserContext } from "../../context/Context";
 
 const Login = () => {
@@ -15,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post(urlLogin, {
+      const res = await axios.post("/api/auth/login", {
         username: usernameRef.current.value,
         password: passwordRef.current.value,
       });
@@ -23,11 +21,9 @@ const Login = () => {
         type: "LOGIN_SUCCESS",
         payload: res.data,
       });
-      console.log(res.data);
     } catch (err) {
       dispatch({
         type: "LOGIN_FAILURE",
-        payload: err || "Login failed",
       });
     }
   };
@@ -35,21 +31,21 @@ const Login = () => {
   return (
     <div className="login">
       <div className="loginWrapper">
-        <span className="loginTitle">Login</span>
+        <span className="loginTitle">Войти в аккаунт</span>
         <form className="loginForm" onSubmit={handleSubmit}>
-          <label>Username</label>
+          <label>Логин</label>
           <input
             className="loginInput"
             type="text"
-            placeholder="Enter your username"
+            placeholder="Введите свой логин"
             ref={usernameRef}
             required
           />
-          <label>Password</label>
+          <label>Пароль</label>
           <input
             className="loginInput"
             type="password"
-            placeholder="Enter your password"
+            placeholder="Введите свой пароль"
             ref={passwordRef}
             required
           />
@@ -58,7 +54,7 @@ const Login = () => {
             type="submit"
             disabled={isFetching}
           >
-            Login
+            Войти
           </button>
         </form>
         {/* <button className="loginRegisterButton">
