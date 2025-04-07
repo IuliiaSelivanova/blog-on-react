@@ -3,7 +3,6 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/Context";
 import axios from "axios";
-// import defaultAvatar from "../../assets/images/cat1.png";
 
 const Settings = () => {
   const { user, dispatch } = useContext(UserContext);
@@ -12,6 +11,10 @@ const Settings = () => {
   const [password, setPassword] = useState("");
   const [file, setFile] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
 
   const handleSubmit = async (e) => {
     dispatch({ type: "UPDATE_START" });
@@ -68,48 +71,56 @@ const Settings = () => {
 
   return (
     <div className="settings">
-      <div className="settingsWrapper">
-        <div className="settingsTitle">
-          <span className="settingsUpdateTitle">
+      <div className="settings__wrapper">
+        <div className="settings__title">
+          <span className="settings__updateTitle">
             Изменить аккаунт
           </span>
           <span
-            className="settingsDeleteTitle"
+            className="settings__deleteTitle"
             onClick={handleDelete}
           >
             Удалить аккаунт
           </span>
         </div>
         <form
-          className="settingsForm"
+          className="settings__form"
           onSubmit={handleSubmit}
         >
           <label>Фото</label>
-          <div className="settingsPP">
-            {user.profilePicture ? (
-              <img
-                src={
-                  file
-                    ? URL.createObjectURL(file)
-                    : `/images/${user.profilePicture}`
-                }
-                alt="settings profile"
+          <div className="settings__picture">
+            <div className="settings__controls">
+              {user.profilePicture ? (
+                <img
+                  src={
+                    file
+                      ? URL.createObjectURL(file)
+                      : `/images/${user.profilePicture}`
+                  }
+                  alt="settings profile"
+                />
+              ) : (
+                <img
+                  src="/images/defaultAvatar.jpg"
+                  alt="settings profile"
+                />
+              )}
+              <label htmlFor="fileInput">
+                <i className="settings__pictureIcon fa-regular fa-circle-user"></i>
+              </label>
+              <input
+                type="file"
+                id="fileInput"
+                style={{ display: "none" }}
+                onChange={(e) => setFile(e.target.files[0])}
               />
-            ) : (
-              <img
-                src="/images/defaultAvatar.jpg"
-                alt="settings profile"
-              />
-            )}
-            <label htmlFor="fileInput">
-              <i className="settingsPPIcon fa-regular fa-circle-user"></i>
-            </label>
-            <input
-              type="file"
-              id="fileInput"
-              style={{ display: "none" }}
-              onChange={(e) => setFile(e.target.files[0])}
-            />
+            </div>
+            <button
+              className="settings__logoutBtn"
+              onClick={handleLogout}
+            >
+              {user && "Выйти"}
+            </button>
           </div>
           <label>Логин</label>
           <input
@@ -128,7 +139,10 @@ const Settings = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="settingsSubmit" type="submit">
+          <button
+            className="settings__submit"
+            type="submit"
+          >
             Обновить
           </button>
           {success && (

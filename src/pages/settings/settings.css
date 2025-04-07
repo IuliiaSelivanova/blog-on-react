@@ -2,47 +2,53 @@
   display: flex;
 }
 
-.settingsWrapper {
+.settings__wrapper {
   flex: 9;
   padding: 20px;
 }
 
-.settingsTitle {
+.settings__title {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.settingsUpdateTitle {
+.settings__updateTitle {
   font-size: 30px;
   margin-bottom: 20px;
   color: lightcoral;
 }
-.settingsDeleteTitle {
+.settings__deleteTitle {
   color: red;
   font-size: 12px;
   cursor: pointer;
 }
 
-.settingsForm {
+.settings__form {
   display: flex;
   flex-direction: column;
 }
 
-.settingsPP {
+.settings__picture {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings__controls {
   display: flex;
   align-items: center;
   margin: 10px 0;
 }
 
-.settingsPP > img {
+.settings__controls > img {
   width: 70px;
   height: 70px;
   border-radius: 20px;
   object-fit: cover;
 }
 
-.settingsPPIcon {
+.settings__pictureIcon {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -55,12 +61,27 @@
   cursor: pointer;
 }
 
-.settingsForm > label {
+/* кнопка Выйти */
+.settings__logoutBtn {
+  /* height: 50px; */
+  color: white;
+  background-color: lightcoral;
+  border: 1px solid lightcoral;
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.settings__logoutBtn:hover {
+  background-color: rgb(224, 86, 86);
+}
+
+.settings__form > label {
   font-size: 20px;
   margin-top: 20px;
 }
 
-.settingsForm > input {
+.settings__form > input {
   color: gray;
   margin: 10px 0;
   height: 30px;
@@ -68,7 +89,7 @@
   border-bottom: 1px solid lightgray;
 }
 
-.settingsSubmit {
+.settings__submit {
   width: 150px;
   align-self: center;
   border: none;

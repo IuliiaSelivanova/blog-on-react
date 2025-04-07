@@ -6,11 +6,7 @@ import { HashLink } from "react-router-hash-link";
 
 const TopBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, dispatch } = useContext(UserContext);
-
-  const handleLogout = () => {
-    dispatch({ type: "LOGOUT" });
-  };
+  const { user } = useContext(UserContext);
 
   return (
     <div className="container">
@@ -60,12 +56,6 @@ const TopBar = () => {
               <Link className="link" to="/write">
                 Написать
               </Link>
-            </li>
-            <li
-              className="top__list__item"
-              onClick={handleLogout}
-            >
-              {user && "Выйти"}
             </li>
           </ul>
         </div>
