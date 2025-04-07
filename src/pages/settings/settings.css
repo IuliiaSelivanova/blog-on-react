@@ -63,7 +63,6 @@
 
 /* кнопка Выйти */
 .settings__logoutBtn {
-  /* height: 50px; */
   color: white;
   background-color: lightcoral;
   border: 1px solid lightcoral;
@@ -81,12 +80,19 @@
   margin-top: 20px;
 }
 
-.settings__form > input {
+.settings__input {
   color: gray;
   margin: 10px 0;
   height: 30px;
   border: none;
   border-bottom: 1px solid lightgray;
+}
+
+.settings__input:focus {
+  outline: none;
+}
+.settings__input:focus::placeholder {
+  opacity: 0.3;
 }
 
 .settings__submit {

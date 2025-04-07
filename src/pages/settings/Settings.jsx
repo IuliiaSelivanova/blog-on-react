@@ -124,19 +124,23 @@ const Settings = () => {
           </div>
           <label>Логин</label>
           <input
+            className="settings__input"
             type="text"
             placeholder={user.username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <label>Email</label>
           <input
+            className="settings__input"
             type="email"
             placeholder={user.email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <label>Пароль</label>
           <input
+            className="settings__input"
             type="password"
+            placeholder={`${"*".repeat(6)}`}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
