@@ -30,12 +30,17 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className="loginWrapper">
-        <span className="loginTitle">Войти в аккаунт</span>
-        <form className="loginForm" onSubmit={handleSubmit}>
+      <div className="login__wrapper">
+        <span className="login__title">
+          Войти в аккаунт
+        </span>
+        <form
+          className="login__form"
+          onSubmit={handleSubmit}
+        >
           <label>Логин</label>
           <input
-            className="loginInput"
+            className="login__input"
             type="text"
             placeholder="Введите свой логин"
             ref={usernameRef}
@@ -43,25 +48,20 @@ const Login = () => {
           />
           <label>Пароль</label>
           <input
-            className="loginInput"
+            className="login__input"
             type="password"
             placeholder="Введите свой пароль"
             ref={passwordRef}
             required
           />
           <button
-            className="loginButton"
+            className="login__button"
             type="submit"
             disabled={isFetching}
           >
             Войти
           </button>
         </form>
-        {/* <button className="loginRegisterButton">
-          <Link className="link" to="/register">
-            Register
-          </Link>
-        </button> */}
 
         <span
           style={{

@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import "./register.css";
 import { useState } from "react";
 import axios from "axios";
@@ -18,7 +17,7 @@ const Register = () => {
         email,
         password,
       });
-      // todo автоматический вход после регистрации, перенаправлять не на страницу с входом, а на write или мои посты
+      // todo автоматический вход после регистрации, перенаправлять не на страницу с входом, а на мои посты
       res.data && window.location.replace("/login");
     } catch (err) {
       console.error(
@@ -31,40 +30,37 @@ const Register = () => {
 
   return (
     <div className="register">
-      <div className="registerWrapper">
-        <span className="registerTitle">Регистрация</span>
+      <div className="register__wrapper">
+        <span className="register__title">Регистрация</span>
         <form
-          className="registerForm"
+          className="register__form"
           onSubmit={handleSubmit}
         >
           <label>Логин</label>
           <input
-            className="registerInput"
+            className="register__input"
             type="text"
             placeholder="Введите свой логин"
             onChange={(e) => setUsername(e.target.value)}
           />
           <label>Email</label>
           <input
-            className="registerInput"
+            className="register__input"
             type="text"
             placeholder="Введите свой email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <label>Пароль</label>
           <input
-            className="registerInput"
+            className="register__input"
             type="password"
             placeholder="Введите пароль"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="registerButton">
+          <button className="register__button">
             Зарегистрироваться
           </button>
         </form>
-        {/* <button className='registerLoginButton'>
-          <Link className='link' to="/login">Login</Link>
-        </button> */}
 
         {error && (
           <span

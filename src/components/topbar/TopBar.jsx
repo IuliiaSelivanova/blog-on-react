@@ -20,12 +20,6 @@ const TopBar = () => {
       ></div>
       <div className="top">
         <div className="top__left">
-          <i className="top__icon fa-brands fa-square-facebook"></i>
-          <i className="top__icon fa-brands fa-square-twitter"></i>
-          <i className="top__icon fa-brands fa-square-pinterest"></i>
-          <i className="top__icon fa-brands fa-square-instagram"></i>
-        </div>
-        <div className="top__center">
           <button
             className="top__menuBtn"
             onClick={() => setIsOpen(true)}
@@ -43,22 +37,26 @@ const TopBar = () => {
             >
               <i className="fa-solid fa-xmark fa-xl"></i>
             </button>
-            <li className="top__list__item link">
+            <li
+              className="top__list__item"
+              onClick={() => setIsOpen(false)}
+            >
               <Link className="link" to="/">
                 Главная
               </Link>
             </li>
-            <li className="top__list__item">
+            <li
+              className="top__list__item"
+              onClick={() => setIsOpen(false)}
+            >
               <Link className="link" to="/myposts">
                 Мои посты
               </Link>
             </li>
-            <li className="top__list__item">
-              <HashLink smooth className="link" to="/">
-                Контакты
-              </HashLink>
-            </li>
-            <li className="top__list__item">
+            <li
+              className="top__list__item"
+              onClick={() => setIsOpen(false)}
+            >
               <Link className="link" to="/write">
                 Написать
               </Link>
@@ -73,16 +71,14 @@ const TopBar = () => {
         </div>
         <div className="top__right">
           {user ? (
-            <Link to="/settings">
+            <Link to="/settings" className="top__image">
               {user.profilePicture ? (
                 <img
-                  className="topImage"
                   src={`/images/${user.profilePicture}`}
                   alt="profile-photo"
                 />
               ) : (
                 <img
-                  className="topImage"
                   src="/images/defaultAvatar.jpg"
                   alt="profile-photo"
                 />
@@ -90,12 +86,12 @@ const TopBar = () => {
             </Link>
           ) : (
             <ul className="top__list">
-              <li className="top__list__item">
+              <li className="top__list__item link">
                 <Link className="link" to="/login">
                   Войти
                 </Link>
               </li>
-              <li className="top__list__item">
+              <li className="top__list__item link">
                 <Link className="link" to="/register">
                   Зарегистрироваться
                 </Link>

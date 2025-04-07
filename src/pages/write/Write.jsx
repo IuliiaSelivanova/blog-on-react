@@ -33,8 +33,8 @@ const Write = () => {
     }
 
     try {
+      console.log(newPost);
       const res = await axios.post("/api/posts", newPost);
-      //todo добавить модал - пост опубликован
       window.location.replace("/post/" + res.data._id);
     } catch (err) {
       console.error(err);

@@ -84,7 +84,7 @@
   flex: 3;
 }
 
-@media screen and(max-width: 900px) {
+@media screen and (max-width: 900px) {
   .settings {
     flex-direction: column-reverse;
   }

@@ -4,9 +4,10 @@ import "./posts.css";
 const Posts = ({ posts }) => {
   return (
     <div className="posts">
-      {posts.map((post) => (
-        <Post key={post._id} post={post} />
-      ))}
+      {posts &&
+        posts.map((post) => (
+          <Post key={post._id} post={post} />
+        ))}
     </div>
   );
 };

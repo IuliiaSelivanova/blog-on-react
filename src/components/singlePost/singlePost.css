@@ -3,7 +3,7 @@
 }
 
 .singlePostWrapper {
-  padding: 20px;
+  margin: 20px;
   padding-right: 0;
   display: flex;
   flex-direction: column;
@@ -91,4 +91,16 @@
   cursor: pointer;
   align-self: flex-end;
   margin: 20px;
+}
+
+@media screen and (max-width: 900px) {
+  .single {
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .singlePostImg {
+    height: 200px;
+  }
 }

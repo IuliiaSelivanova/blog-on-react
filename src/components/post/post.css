@@ -54,3 +54,9 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+@media screen and (max-width: 450px) {
+  .postImg {
+    height: 200px;
+  }
+}
