@@ -1,17 +1,28 @@
 import "./write.css";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/Context";
+
+interface NewPost {
+  title: string;
+  userId: string;
+  description: string;
+  username: string;
+  image?: string;
+}
 
 const Write = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const { user } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPost = {
+
+    if (!user) return;
+
+    const newPost: NewPost = {
       title,
       userId: user._id,
       description: desc,
@@ -41,6 +52,14 @@ const Write = () => {
     }
   };
 
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   return (
     <div className="write">
       {file && (
@@ -59,23 +78,26 @@ const Write = () => {
             type="file"
             id="fileInput"
             style={{ display: "none" }}
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={handleFileChange}
           />
           <input
             type="text"
             placeholder="Название"
             className="write__input"
             autoFocus={true}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(
+              e: React.ChangeEvent<HTMLInputElement>,
+            ) => setTitle(e.target.value)}
           />
         </div>
         <div className="write__form-group">
           <textarea
             placeholder="Расскажите свою историю..."
-            type="text"
             rows={15}
             className="write__input write__text"
-            onChange={(e) => setDesc(e.target.value)}
+            onChange={(
+              e: React.ChangeEvent<HTMLTextAreaElement>,
+            ) => setDesc(e.target.value)}
           ></textarea>
         </div>
         <button className="write__submit" type="submit">

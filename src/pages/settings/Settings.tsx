@@ -1,28 +1,39 @@
 import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/Context";
 import axios from "axios";
+
+interface UpdatedUser {
+  userId: string;
+  username: string;
+  email: string;
+  password: string;
+  profilePicture?: string;
+}
 
 const Settings = () => {
   const { user, dispatch } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const [success, setSuccess] = useState(false);
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    if (!user) return;
+
     dispatch({ type: "UPDATE_START" });
     e.preventDefault();
-    const updatedUser = {
+
+    const updatedUser: UpdatedUser = {
       userId: user._id,
-      username,
-      email,
+      username: username || user.username,
+      email: email || user.email,
       password,
     };
 
@@ -32,12 +43,15 @@ const Settings = () => {
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
-      console.log(file);
       updatedUser.profilePicture = filename;
+
       try {
         await axios.post("/api/upload", data);
       } catch (error) {
-        console.error(error);
+        dispatch({
+          type: "UPDATE_FAILURE",
+          payload: "Ошибка загрузки картинки",
+        });
       }
     }
 
@@ -54,18 +68,31 @@ const Settings = () => {
     } catch (err) {
       dispatch({
         type: "UPDATE_FAILURE",
-        payload: err || "Update failed",
+        payload: axios.isAxiosError(err)
+          ? err.response?.data?.message ||
+            "Ошибка обновления данных пользователя"
+          : "Ошибка обновления данных пользователя",
       });
     }
   };
 
   const handleDelete = async () => {
+    if (!user) return;
+
     try {
       await axios.delete(`/api/users/${user._id}`);
       dispatch({ type: "LOGOUT" });
       window.location.replace("/");
     } catch (error) {
-      console.error(error);
+      console.error("Ошибка удаление пользователя", error);
+    }
+  };
+
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
     }
   };
 
@@ -90,21 +117,17 @@ const Settings = () => {
           <label>Фото</label>
           <div className="settings__picture">
             <div className="settings__controls">
-              {user.profilePicture ? (
-                <img
-                  src={
-                    file
-                      ? URL.createObjectURL(file)
-                      : `/images/${user.profilePicture}`
-                  }
-                  alt="settings profile"
-                />
-              ) : (
-                <img
-                  src="/images/defaultAvatar.jpg"
-                  alt="settings profile"
-                />
-              )}
+              <img
+                src={
+                  file
+                    ? URL.createObjectURL(file)
+                    : user?.profilePicture
+                    ? `/images/${user.profilePicture}`
+                    : "/images/defaultAvatar.jpg"
+                }
+                alt="settings profile"
+              />
+
               <label htmlFor="fileInput">
                 <i className="settings__pictureIcon fa-regular fa-circle-user"></i>
               </label>
@@ -112,7 +135,7 @@ const Settings = () => {
                 type="file"
                 id="fileInput"
                 style={{ display: "none" }}
-                onChange={(e) => setFile(e.target.files[0])}
+                onChange={handleFileChange}
               />
             </div>
             <button
@@ -126,22 +149,28 @@ const Settings = () => {
           <input
             className="settings__input"
             type="text"
-            placeholder={user.username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder={user?.username && user.username}
+            onChange={(
+              e: React.ChangeEvent<HTMLInputElement>,
+            ) => setUsername(e.target.value)}
           />
           <label>Email</label>
           <input
             className="settings__input"
             type="email"
-            placeholder={user.email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder={user?.email && user.email}
+            onChange={(
+              e: React.ChangeEvent<HTMLInputElement>,
+            ) => setEmail(e.target.value)}
           />
           <label>Пароль</label>
           <input
             className="settings__input"
             type="password"
             placeholder={`${"*".repeat(6)}`}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(
+              e: React.ChangeEvent<HTMLInputElement>,
+            ) => setPassword(e.target.value)}
           />
           <button
             className="settings__submit"

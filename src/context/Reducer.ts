@@ -1,4 +1,9 @@
-const Reducer = (state, action) => {
+import {
+  UserActions,
+  UserState,
+} from "../types/actionTypes";
+
+const Reducer = (state: UserState, action: UserActions) => {
   switch (action.type) {
     case "LOGIN_START":
       return {
@@ -16,7 +21,7 @@ const Reducer = (state, action) => {
       return {
         user: null,
         isFetching: false,
-        error: true,
+        error: action.payload,
       };
     case "LOGOUT":
       return {

@@ -1,42 +1,61 @@
 import "./singlePost.css";
-import { Link, useLocation } from "react-router";
-import { useContext, useEffect, useState } from "react";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 import { UserContext } from "../../context/Context";
+import { IPost } from "../../types/interface";
 
 const SinglePost = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState<IPost | null>(null);
   const { user } = useContext(UserContext);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/api/posts/" + path);
-      setPost(res.data);
-      setTitle(res.data.title);
-      setDesc(res.data.description);
+      try {
+        const res = await axios.get("/api/posts/" + path);
+        setPost(res.data);
+        setTitle(res.data.title);
+        setDesc(res.data.description);
+      } catch (error) {
+        console.error("Ошибка загрузки поста:", error);
+        navigate("/");
+      }
     };
     getPost();
-  }, [path]);
+  }, [path, navigate]);
 
   const handleDelete = async () => {
+    if (!user) return;
+
     try {
       await axios.delete(`/api/posts/${path}`, {
         data: {
           username: user.username,
         },
       });
-      window.location.replace("/");
+      navigate("/");
     } catch (error) {
-      console.error(error);
+      console.error("Ошибка удаления поста:", error);
     }
   };
 
   const handleUpdate = async () => {
+    if (!user) return;
+
     try {
       await axios.put(`/api/posts/${path}`, {
         title,
@@ -44,10 +63,20 @@ const SinglePost = () => {
         username: user.username,
       });
       setUpdateMode(false);
+
+      // Обновляем пост после изменения
+      const res = await axios.get<IPost>(
+        `/api/posts/${path}`,
+      );
+      setPost(res.data);
     } catch (error) {
-      console.error(error);
+      console.error("Ошибка обновления поста:", error);
     }
   };
+
+  if (!post) {
+    return <div className="singlePost">Загрузка...</div>;
+  }
 
   return (
     <div className="singlePost">

@@ -7,7 +7,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./app.css";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "./context/Context";
 import MyPosts from "./pages/myposts/MyPosts";
 

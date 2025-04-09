@@ -1,7 +1,15 @@
+import * as React from "react";
 import "./post.css";
 import { Link } from "react-router";
+import { IPost } from "../../types/interface";
 
-const Post = ({ post }) => {
+interface PostProps {
+  post: IPost;
+}
+
+const Post: React.FunctionComponent<PostProps> = ({
+  post,
+}) => {
   return (
     <div className="post">
       {post.image && (
@@ -14,11 +22,12 @@ const Post = ({ post }) => {
 
       <div className="postInfo">
         <div className="postCategories">
-          {post.categories.map((category) => (
-            <span className="postCat" key={category._id}>
-              {category.name}
-            </span>
-          ))}
+          {post.categories &&
+            post.categories.map((category) => (
+              <span className="postCat" key={category._id}>
+                {category.name}
+              </span>
+            ))}
         </div>
         <Link className="link" to={`/post/${post._id}`}>
           <span className="postTitle">{post.title}</span>

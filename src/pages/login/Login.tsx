@@ -1,29 +1,42 @@
 import "./login.css";
-import { useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import { UserContext } from "../../context/Context";
 
 const Login = () => {
-  const usernameRef = useRef("");
-  const passwordRef = useRef("");
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   const { dispatch, isFetching, error } =
     useContext(UserContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // проверка наличия ссылок
+    if (!usernameRef.current || !passwordRef.current)
+      return;
+
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/api/auth/login", {
         username: usernameRef.current.value,
         password: passwordRef.current.value,
       });
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: res.data,
-      });
+      if (res.data && res.data._id) {
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: res.data,
+        });
+        navigate("/myposts");
+      } else {
+        throw new Error("Error response data");
+      }
     } catch (err) {
       dispatch({
         type: "LOGIN_FAILURE",
+        payload: "Ошибка авторизации",
       });
     }
   };

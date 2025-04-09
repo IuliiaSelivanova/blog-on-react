@@ -1,12 +1,16 @@
-import { useEffect } from "react";
+import * as React from "react";
 import Post from "../post/Post";
 import "./posts.css";
 import { Link } from "react-router";
+import { IPost } from "../../types/interface";
 
-const Posts = ({ posts }) => {
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
+interface PostsProps {
+  posts: IPost[];
+}
+
+const Posts: React.FunctionComponent<PostsProps> = ({
+  posts,
+}) => {
   return (
     <div className="posts">
       {posts.length ? (
