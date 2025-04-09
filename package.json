@@ -1,16 +1,19 @@
 {
   "name": "blog-on-react",
   "version": "0.1.0",
-  "proxy": "http://localhost:3000",
   "private": true,
   "homepage": "https://iuliiaselivanova.github.io/blog-on-react/",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
+    "@tanstack/react-query": "^5.72.0",
+    "@tanstack/react-query-devtools": "^5.72.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitejs/plugin-react-swc": "^3.8.1",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "react-router": "^7.1.0",
     "react-router-hash-link": "^2.4.3",
     "vite": "^6.2.2",
@@ -45,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.72.0",
     "@vitest/coverage-v8": "^3.0.9",
     "gh-pages": "^6.2.0",
     "jsdom": "^26.0.0",
