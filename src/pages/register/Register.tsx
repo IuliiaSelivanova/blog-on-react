@@ -1,5 +1,5 @@
 import "./register.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 const Register = () => {
@@ -17,7 +17,7 @@ const Register = () => {
         email,
         password,
       });
-      // todo автоматический вход после регистрации, перенаправлять не на страницу с входом, а на мои посты
+      // todo автоматический вход после регистрации
       res.data && window.location.replace("/login");
     } catch (err) {
       console.error(

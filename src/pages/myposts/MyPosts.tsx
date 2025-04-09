@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useContext, useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
@@ -5,20 +6,27 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import axios from "axios";
 import { UserContext } from "../../context/Context";
 import { Link } from "react-router";
+import { IPost } from "../../types/interface";
 
 const MyPosts = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<IPost[]>([]);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get(
-        `/api/posts?user=${user.username}`,
-      );
-      setPosts(res.data);
+      if (!user) return;
+
+      try {
+        const res = await axios.get(
+          `/api/posts?user=${user.username}`,
+        );
+        setPosts(res.data);
+      } catch (error) {
+        console.error("Ошибка при загрузке постов:", error);
+      }
     };
     fetchPosts();
-  }, [user.username]);
+  }, [user?.username]);
   return (
     <>
       <Header />

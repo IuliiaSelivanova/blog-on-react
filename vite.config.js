@@ -22,4 +22,9 @@ export default defineConfig({
       exclude: [],
     },
   },
+  build: {
+    rollupOptions: {
+      input: "/src/index.tsx",
+    },
+  },
 });

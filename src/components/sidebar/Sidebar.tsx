@@ -1,11 +1,14 @@
 import "./sidebar.css";
-import sidebarProfile from "../../assets/images/sidebarProfile.jpg";
-import { useEffect, useState } from "react";
+// import sidebarProfile from "../../assets/images/sidebarProfile.jpg";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
+import { ICategory } from "../../types/interface";
 
 const Sidebar = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<ICategory[]>(
+    [],
+  );
 
   useEffect(() => {
     const getCategories = async () => {
@@ -17,8 +20,8 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar__item">
-        <span className="sidebar__title">About me</span>
-        <img src={sidebarProfile} alt="sidebar profile" />
+        <span className="sidebar__title">Обо мне</span>
+        {/* <img src={sidebarProfile} alt="sidebar profile" /> */}
         <p>
           Lorem ipsum, dolor sit amet consectetur
           adipisicing elit. Quos sed at magni officia harum
@@ -43,7 +46,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="sidebar__item">
-        <span>Follow us</span>
+        <span>Социальные сети</span>
         <div className="sidebar__social">
           <i className="sidebar__icon fa-brands fa-square-facebook"></i>
           <i className="sidebar__icon fa-brands fa-square-twitter"></i>

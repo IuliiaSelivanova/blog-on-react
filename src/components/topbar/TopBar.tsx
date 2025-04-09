@@ -1,8 +1,7 @@
 import "./topbar.css";
 import { Link } from "react-router";
 import { UserContext } from "../../context/Context";
-import { useContext, useState } from "react";
-import { HashLink } from "react-router-hash-link";
+import React, { useContext, useState } from "react";
 
 const TopBar = () => {
   const [isOpen, setIsOpen] = useState(false);
